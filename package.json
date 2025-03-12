@@ -1,0 +1,23 @@
+{
+  "name": "curso_intro_js",
+  "version": "1.0.0",
+  "description": "Intro js 2025 Ada",
+  "main": "prueba.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emiliavparra/Curso_Intro_JS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emiliavparra/Curso_Intro_JS/issues"
+  },
+  "homepage": "https://github.com/emiliavparra/Curso_Intro_JS#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
