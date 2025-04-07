@@ -15,13 +15,10 @@ let n = 0
 
 // Hago el ciclo para que itere hasta llegar al numero ingresado
 
-for (let x = 1; x < numeroLimite; x++) {
-    n += x; {
-        console.log(`La suma de los numeros es ${n}`)
-    }
-
+for (let x = 1; x <= numeroLimite; x++) {
+    n += x;
 }
-
+console.log(`La suma de los numeros es ${n}`)
 
 // for (let encontrarPares = 1; encontrarPares <= 100; encontrarPares++) {
 //     if (encontrarPares % 2 == 0) { //le digo que si es par se guarde
