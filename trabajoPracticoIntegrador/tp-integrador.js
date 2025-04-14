@@ -1,3 +1,6 @@
+// Trabajo Practico integrador introduccion a JS
+// Alumna Emilia Parra
+
 // Sistema de gestion de biblioteca
 
 // Punto 1
