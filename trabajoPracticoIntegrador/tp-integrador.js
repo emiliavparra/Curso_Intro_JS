@@ -180,7 +180,7 @@ function agregarLibro(titulo, autor, anio, genero) {
 
 //b. Hago la funcion buscar libro (titulo, autor o genero)
 // Uso una funcion flecha y el metodo 'forEach' para encontrar lo que busco
-// Agrego un consolelog para mostrar lo que encuentra 
+// Agrego un console log para mostrar lo que encuentra 
 
 function buscarLibro(criterio, valor) {
 
@@ -190,10 +190,6 @@ function buscarLibro(criterio, valor) {
         }
     });
 }
-
-// Pruebo el codigo en consola 
-// console.log(buscarLibro('autor', 'Dario Gomez dos'))
-
 
 //c. Defino la funcion para ordenar libros segun el criterio (titulo o año)
 function ordenarLibros(criterio) {
@@ -214,7 +210,7 @@ function ordenarLibros(criterio) {
             }
         }
     }
-    // que muestre los libros ordenados
+    // que muestre los libros ordenados. Lo tabulo asi 'feo' para que se vea 'lindo' en consola al mostrar
     libros.forEach(libro => {
         console.log(`
 Titulo: ${libro.titulo}   
@@ -251,6 +247,7 @@ function borrarLibro(id) {
 // El id esta dado por la funcion para generar neuvo id y libros prestados es una array vacia
 // uso push para agregar el usuario al array usuarios
 
+//a. Creo que funcion que permite agregar un nuevo usuario usando el metodo push para agregarlo a la array
 function registrarUsuario(nombre, email) {
     const nuevoUsuario = {
         id: generarNuevoId(usuarios),
@@ -292,7 +289,7 @@ function buscarUsuario(email) {
             libros prestados: ${usuarioBuscado.librosPrestados}`)
 }
 
-// d. Uso splice para encontrar y borrar el usuario
+// d. Uso splice para encontrar y borrar el usuario. Y uso el metodo findindex porque lo tengo que localizar en el array
 
 function borrarUsuario(nombre, email) {
     const index = usuarios.findIndex(usuario => usuario.nombre === nombre &&
@@ -316,7 +313,7 @@ function borrarUsuario(nombre, email) {
 // b)	Implementar una función devolverLibro(idLibro, idUsuario) que marque un libro como 
 // disponible y lo elimine de la lista de libros prestados del usuario.
 
-// a)
+// a) Hago la funcion para me va a mostrar lo pedido
 function prestarLibro(idLibro, idUsuario) {
 
     // Obtengo el libro y el usuario a partir de los ids
@@ -376,12 +373,12 @@ function generarReporteLibros() {
     subReporteLibroAño()
 }
 
-// Funcion que calcula cantidad de libros
+// Funcion que calcula cantidad de libros usando el metodo lenght
 function subReporteCantidadLibros() {
     console.log(`Cantidad total de libros: ${libros.length}`)
 }
 
-// Funcion que calcula cantidad de libros prestados
+// Funcion que calcula cantidad de libros prestados usando el metodo reduce
 function subReporteLibrosPrestados() {
     const librosPrestados = libros.reduce((contador, libro) => {
 
@@ -396,7 +393,7 @@ function subReporteLibrosPrestados() {
     console.log(`Cantidad total de libros prestados: ${librosPrestados}`)
 }
 
-// Funcion que calcula cantidad de libros por genero
+// Funcion que calcula cantidad de libros por genero usando el metodo for each y in
 function subReporteLibrosPorGenero() {
     // Creo objetopara almacenar los contadores por genero
     let reporte = {};
@@ -423,7 +420,7 @@ function subReporteLibrosPorGenero() {
     }
 }
 
-// Funcion que calcula libro mas antiguo y libro mas nuevo
+// Funcion que calcula libro mas antiguo y libro mas nuevo usando el metodo map. y math
 function subReporteLibroAño() {
     const años = libros.map(libro => libro.año);
     const añoMasAntiguo = Math.min(...años);
@@ -520,7 +517,7 @@ function calcularEstadisticas() {
 // ✔	Formatear los emails de los usuarios a minúsculas.
 
 
-// Creo la funcion principal
+// Creo la funcion principal usando el metodo foreach asi recorre todo el array
 function normalizarDatos() {
     // Recorro cada libro para normalizar
     // el string del titulo y autor
@@ -550,8 +547,10 @@ const prompt = require('prompt-sync')();
 
 //a. Funcion principal
 
+// Pongo este objeto por fuera de la funcion de menu principal asi siempre vuelve a comenzar
 let opcionPrincipal
 
+// Creo el menu principal enumerando todas las opciones que hice mediante funciones previas
 function menuPrincipal() {
     console.log('Bienvenido al sistema de gestion de la biblioteca! Que deseas hacer?');
     console.log('1- Agregar libro')
@@ -569,7 +568,9 @@ function menuPrincipal() {
     console.log('13- Calcular estadisticas')
     console.log('14- Normalizar datos')
 
+    // Pido al usuario que ingrese una opcion usando prompt. Uso parseInt para segurarme que sea un nro entero
     opcionPrincipal = parseInt(prompt('Por favor ingresa el numero de la accion que desees ejecutar: '))
+    //Uso el metodo switch ya que solo quiero que se ejecute si el usuario pone la opcion exacta
     switch (opcionPrincipal) {
         case 1:
             const titulo = prompt('Ingrese el titulo del libro: ')
@@ -585,6 +586,7 @@ function menuPrincipal() {
             console.log('3- Buscar por genero')
             const criterioBuscar = parseInt(prompt(''))
             const valor = prompt('Ingrese el valor de busqueda: ')
+            // Hago un sub menu ya que son 3 criterios distintos
             switch (criterioBuscar) {
                 case 1: buscarLibro('titulo', valor); break;
                 case 2: buscarLibro('autor', valor); break;
@@ -597,12 +599,12 @@ function menuPrincipal() {
             console.log('1- Ordenar por año')
             console.log('2- Ordenar por titulo')
             const criterio = parseInt(prompt(''))
+            // Hago un sub menu ya que son 2 criterios distintos
             switch (criterio) {
                 case 1: ordenarLibros('año'); break;
                 case 2: ordenarLibros('titulo'); break;
                 default: console.log('Criterio invalido');
             }
-
             break
         case 4:
             const id = parseInt(prompt('Por favor ingrese el id del libro que desea borrar: '))
@@ -652,6 +654,7 @@ function menuPrincipal() {
         default: console.log('Ninguna de las opciones ingresadas es correcta')
     }
 
+    // Le doy la opcion al usuario de volver al menu principal (sin validacion) y un mensaje de despedida si elige no volver al menu
     const volver = prompt('Desea volver al menu principal? y/n: ')
 
     if (volver === 'y') menuPrincipal();
@@ -659,6 +662,7 @@ function menuPrincipal() {
 
 }
 
-menuPrincipal()
+// Pruebo el codigo final
+// menuPrincipal()
 
 
